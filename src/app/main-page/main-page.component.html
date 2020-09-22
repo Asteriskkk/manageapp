@@ -1,0 +1,91 @@
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+    <h1 style="margin-top: auto; text-align: center;font-weight: bold; font-size: 30px; ">MANAGE COCO</h1>
+    <form [formGroup]="userForm" #f="ngForm" (ngSubmit)="onSubmit(f.value)" ng-app ngNativeValidate>
+        <div>
+            <div class="row">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        ABSENCE
+                    </div>
+                    <ul>
+                        <div *ngFor="let data of Absence; let i=index">
+                            <input type="checkbox" [value]="data.value" (change)="onAbsenceChange($event)" />&nbsp;&nbsp;
+                            {{data.name}}
+                        </div>
+                        <br>
+                    </ul>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        ATTENDANCE
+                    </div>
+                    <ul>
+                        <div *ngFor="let data of Attendance; let i=index">
+                            <input type="checkbox" [value]="data.value" (change)="onAttendanceChange($event)" />&nbsp;&nbsp;
+                            {{data.name}}
+                        </div>
+                    </ul>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                       SERVICE DESK
+                    </div>
+                    <ul>
+                        <div *ngFor="let data of Servicedesk; let i=index">
+                            <input type="checkbox" [value]="data.value" (change)="onServiceDeskChange($event)" />&nbsp;&nbsp;
+                            {{data.name}}
+                        </div>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        PEOPLE SEARCH
+                    </div>
+                    <ul>
+                        <div *ngFor="let data of PeopleSearch; let i=index">
+                            <input type="checkbox" [value]="data.value" (change)="onPeopleSearchChange($event)" />&nbsp;&nbsp;
+                            {{data.name}}
+                        </div>
+                    </ul>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        WORK FROM HOME
+                    </div>
+                    <ul>
+                        <div *ngFor="let data of WorkFromHome; let i=index">
+                            <input type="checkbox" [value]="data.value" (change)="onWorkFromHomeChange($event)" />&nbsp;&nbsp;
+                             {{data.name}}
+                        </div>
+                    </ul>
+                </div>
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header">
+                        APPROVALS
+                    </div>
+                    <ul>
+                        <div *ngFor="let data of Approvals; let i=index">
+                            <input type="checkbox" [value]="data.value" (change)="onApprovalsChange($event)" />&nbsp;&nbsp;
+                            {{data.name}}
+                        </div>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div>
+            <button class="button" type="submit" id="btn" id="submit" name="submit" ng-click="submitted=true"
+                ng-disabled="form.$invalid">SUBMIT</button>
+        </div>
+    </form>
+</body>
+
+</html>

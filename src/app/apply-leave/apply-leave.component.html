@@ -1,0 +1,179 @@
+<!-- <!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+
+
+  <div class="grid-container">
+    <div class="item1">
+      
+        
+    </div>
+    <div class="item2">Main</div>  
+    <div class="item3">Right</div>
+
+</div>
+
+</body>
+</html>
+ -->
+
+
+ <!DOCTYPE html>
+ <html>
+ <head>
+ </head>
+ <body style="background-color:rgb(241, 243, 247);">
+ 
+ 
+ <div class="main">
+ 
+ 
+ <h1 class="h1">Apply Leave</h1>
+     <input type="text" name="healthcheck" placeholder="Enter a healthcheck URL" value ="" style="width:75%;margin: 1%">
+     <button class="button" type="submit" style="background-color: #464775; color:white" (click)="showSuccess = !showSuccess"> Connect </button>
+     
+     <p style="font-weight:bolder;color: green;" *ngIf="showSuccess">&nbsp;&nbsp;Successfully Connected.</p>
+ </div>
+ 
+ 
+ 
+ 
+ <br>
+ <div class="row" style="padding-left:10px; padding-right:20px ;">
+     <form *ngIf="loading"  [formGroup]="userForm" #f="ngForm" (ngSubmit)="onSubmit(f.value)" ng-app ngNativeValidate>
+       <div >
+         <label for="applyLeaveUrl" class="control-label" style="font-weight: bolder;">API URL :</label>
+         <div class="form-group">
+           <input [disabled]="true" type="text" formControlName="applyLeaveUrlMethod" class="form-control"
+             id="applyLeaveUrl" name="applyLeaveUrlMethod" autocomplete="off"  [(ngModel)]="applyLeaveUrlMethod" value="POST">
+ 
+           <input [readonly]="variable" type="text" formControlName="applyLeaveUrl" class="form-control"
+             id="applyLeaveUrl" name="applyLeaveUrl" placeholder="Enter a request URL" autocomplete="off" required="true" [(ngModel)]="applyLeaveUrl">
+         </div>
+       </div>
+     </form>
+ 
+ </div>
+ 
+ 
+ <div class="row" [formGroup]="userForm" #f="ngForm">
+   <div class="column">
+     <h4 style="text-align:left;font-weight: bold;">REQUEST API DEFINITION</h4>
+     <textarea id="w3review" style="height:220px; width:100% ; border-radius: 10px;" placeholder="Request structure in JSON"></textarea>
+     
+     <br>
+     <br>
+     <br>
+     <br>
+ 
+     <h4 style="text-align:left;font-weight: bold;">REQUEST KEY MAPPING</h4>
+     <input type="text" formControlName="key1" placeholder="From Date" class="form-control" id="key1"
+     name="key1" value="From Date" readonly> 
+     &nbsp;&nbsp;&nbsp;
+     <select formControlName="FROM_DT" name="FROM_DT" id="FROM_DT" (change)="changeFromdate($event)">
+       <option  disabled  >--select key--</option>  
+        <option *ngFor="let response of requestBody" [ngValue]="FROM_DT">{{response}}</option>
+    </select>
+    <br>
+ 
+ 
+    <input type="text" formControlName="key1" class="form-control" id="key1"
+    name="key1" value="To Date" placeholder="To Date"  readonly> 
+    &nbsp;&nbsp;&nbsp;
+    <select formControlName="TO_DT" name="TO_DT" id="TO_DT" (change)="changeFromdate($event)">
+      <option  disabled  >--select key--</option>  
+       <option *ngFor="let response of requestBody" [ngValue]="FROM_DT">{{response}}</option>
+   </select>
+ 
+   <br>
+ 
+ 
+   <input type="text" formControlName="key1" class="form-control" id="key1"
+   name="key1" value="Leave Type" placeholder="Leave Type"  readonly> 
+   &nbsp;&nbsp;&nbsp;
+   <select formControlName="LEAVE_TYPE" name="LEAVE_TYPE" id="LEAVE_TYPE" (change)="changeFromdate($event)">
+     <option  disabled  >--select key--</option>  
+      <option *ngFor="let response of requestBody" [ngValue]="FROM_DT">{{response}}</option>
+  </select>
+ 
+  <br>
+ 
+ 
+  <input type="text" formControlName="key1" class="form-control" id="key1"
+  name="key1" value="Reason" placeholder="Reason" readonly> 
+  &nbsp;&nbsp;&nbsp;
+  <select formControlName="LEAVE_DESCRIPTION" name="LEAVE_DESCRIPTION" id="LEAVE_DESCRIPTION" (change)="changeFromdate($event)">
+    <option  disabled  >--select key--</option>  
+     <option *ngFor="let response of requestBody" [ngValue]="FROM_DT">{{response}}</option>
+ </select>
+    
+ 
+ <br>
+ 
+ 
+   </div>
+   <div class="column">
+     
+     <h4 style="text-align:left;font-weight: bold;">RESPONSE API DEFINITION</h4>
+     <textarea id="w3review" style="height:220px; width:100% ; border-radius: 10px;" placeholder="Response structure in JSON"></textarea>
+     <br>
+     <button class="button" type="submit" style="float: right; background-color: #464775; color:white;">Process</button>
+     
+     <br>
+     <br>
+     
+     <div class="form-group col-md-6">
+      <h4 style="text-align:left;font-weight: bold;">RESPONSE KEY MAPPING</h4>
+             <input type="text" formControlName="key5" class="form-control" id="key5"
+             name="key1" value="Approve Status" placeholder="Approve Status" readonly>
+             &nbsp;&nbsp;&nbsp;
+             <select formControlName="STATUS" name="STATUS" id="STATUS" (change)="changeStatus($event)">
+               <option *ngFor="let response of responseBody" [ngValue]="STATUS">{{response}}</option>
+            </select>
+           </div>
+           
+           <div class="form-group col-md-6">
+             <input type="text" formControlName="key6" class="form-control" id="key6"
+             name="key1" value="Message" placeholder="Message" readonly>
+             &nbsp;&nbsp;&nbsp;
+             <select formControlName="MESSAGE" name="MESSAGE" id="MESSAGE" (change)="changeMessage($event)">
+               <option *ngFor="let response of responseBody" [ngValue]="MESSAGE">{{response}}</option>
+            </select>
+           </div>
+           <div class="form-group col-md-6">
+             <input type="text" formControlName="key7" class="form-control" id="key7"
+             name="key1" value="Approver Name" placeholder="Approver Name" readonly>
+             &nbsp;&nbsp;&nbsp;
+             <select formControlName="APPROVER_NAME" name="APPROVER_NAME" id="APPROVER_NAME" (change)="changeApprovername($event)">
+               <option *ngFor="let response of responseBody" [ngValue]="APPROVER_NAME">{{response}}</option>
+            </select>
+           </div>
+   </div>
+ 
+ 
+   <br>
+ 
+ </div>
+ <br>
+ <button class="button" type="submit" style="background-color: #464775; color:white;float:right;" (click)="showSuccess = !showSuccess"> Connect </button>
+
+ <br>
+ <br><br>
+ <br>
+ <br><br>
+ </body>
+ </html>
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 

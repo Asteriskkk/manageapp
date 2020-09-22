@@ -1,0 +1,184 @@
+<mat-sidenav-container #notHandset *ngIf="isVisible;else elseBlock">
+  <mat-sidenav #drawer fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false" id="topId"
+    style="top: 3%;">
+    <!-- <mat-accordion multi="true"> -->
+      <mat-list id="homeDiv" *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+  
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="" class="default"
+          style="text-decoration: none; padding-left: 8px;margin-top: -8px; font-size: 20px; font-weight: 500;">HOME</a>
+      </mat-list>
+      <mat-list id="homeDiv" *ngIf="!(isHandset$ | async)">
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="" class="default"
+          style="text-decoration: none; padding-left: 8px;margin-top: -8px; font-size: 20px; font-weight: 500;">HOME</a>
+      </mat-list>
+    <mat-expansion-panel expanded hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title style="font-size: 20px;font-weight: 500;">
+          <!-- <span><img src="./assets/icons/Use cases icon@3x.png" style="
+              height: 20px;
+              width: 18px;
+              padding-right: 11px;
+          " /></span> -->
+          MODULES
+        </mat-panel-title>
+      </mat-expansion-panel-header>
+      <mat-expansion-panel style="box-shadow: none;">
+        <!-- <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 500;">
+            Return to Work
+          </mat-panel-title>
+        </mat-expansion-panel-header> -->
+        <!-- <mat-list [id]=(workFromOffice[0].class) *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+          <a mat-list-item *ngFor="let wfo of workFromOffice" [routerLinkActive]="['is-active']" [routerLink]="wfo.link"
+            [style.backgroundColor]="color" class='default' style="text-decoration: none; font-size: 15px;"
+            [id]=(wfo.id)>{{wfo.name}}</a>
+        </mat-list> -->
+        <!-- <mat-list [id]=(workFromOffice[0].class) *ngIf="!(isHandset$ | async)">
+          <a mat-list-item *ngFor="let wfo of workFromOffice" [routerLinkActive]="['is-active']" [routerLink]="wfo.link"
+            [style.backgroundColor]="color" class='default' style="text-decoration: none; font-size: 15px;"
+            [id]=(wfo.id)>{{wfo.name}}</a>
+        </mat-list> -->
+      </mat-expansion-panel>
+      <mat-expansion-panel style="box-shadow: none;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 500;">
+            Absence
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list [id]=(absence[0].class) *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+          <a mat-list-item *ngFor="let abs of absence" [routerLinkActive]="['is-active']" [routerLink]="abs.link"
+            [style.backgroundColor]="color" class='default' style="text-decoration: none; font-size: 15px;"
+            [id]=(abs.id)>{{abs.name}}</a>
+        </mat-list>
+        <mat-list [id]=(absence[0].class) *ngIf="!(isHandset$ | async)">
+          <a mat-list-item *ngFor="let abs of absence" [routerLinkActive]="['is-active']" [routerLink]="abs.link"
+            [style.backgroundColor]="color" class='default' style="text-decoration: none; font-size: 15px;"
+            [id]=(abs.id)>{{abs.name}}</a>
+        </mat-list>
+      </mat-expansion-panel>
+      <mat-expansion-panel style="box-shadow: none;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 500;">
+            Service Desk
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list [id]=(genies[0].class) *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+          <a mat-list-item *ngFor="let genie of genies" class='default' [routerLinkActive]="['is-active']"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="genie.link">{{genie.name}}</a>
+        </mat-list>
+        <mat-list [id]=(genies[0].class) *ngIf="!(isHandset$ | async)">
+          <a mat-list-item *ngFor="let genie of genies" class='default' [routerLinkActive]="['is-active']"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="genie.link">{{genie.name}}</a>
+        </mat-list>
+      </mat-expansion-panel>
+      <!-- <mat-expansion-panel style="box-shadow: none;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 500;">
+            Approvals
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list id="approvalDiv" *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+          <a mat-list-item *ngFor="let approval of approvals" class='default' [routerLinkActive]="['is-active']"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="approval.link">{{approval.name}}</a>
+        </mat-list>
+        <mat-list id="approvalDiv" *ngIf="!(isHandset$ | async)">
+          <a mat-list-item *ngFor="let approval of approvals" [routerLinkActive]="['is-active']" class="default"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="approval.link">{{approval.name}}</a>
+        </mat-list>
+      </mat-expansion-panel> -->
+
+      <!-- <mat-expansion-panel style="box-shadow: none;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 500;">
+            Attendance
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list id="approvalDiv" *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+          <a mat-list-item *ngFor="let attend of attendance" class='default' [routerLinkActive]="['is-active']"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="attend.link">{{attend.name}}</a>
+        </mat-list>
+        <mat-list id="approvalDiv" *ngIf="!(isHandset$ | async)">
+          <a mat-list-item *ngFor="let attend of attendance" [routerLinkActive]="['is-active']" class="default"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="attend.link">{{attend.name}}</a>
+        </mat-list>
+      </mat-expansion-panel> -->
+
+      <!-- <mat-expansion-panel style="box-shadow: none;">
+        <mat-expansion-panel-header>
+          <mat-panel-title style="font-weight: 500;">
+            CRM
+          </mat-panel-title>
+        </mat-expansion-panel-header>
+        <mat-list id="crmDiv" *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+          <a mat-list-item *ngFor="let cust of crm" class='default' [routerLinkActive]="['is-active']"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="cust.link">{{cust.name}}</a>
+        </mat-list>
+        <mat-list id="crmDiv" *ngIf="!(isHandset$ | async)">
+          <a mat-list-item *ngFor="let cust of crm" [routerLinkActive]="['is-active']" class="default"
+            style="text-decoration: none; font-size: 15px;" [style.background]="color"
+            [routerLink]="cust.link">{{cust.name}}</a>
+        </mat-list>
+      </mat-expansion-panel> -->
+
+      <!-- <mat-list id="peopleSearchDiv" *ngIf="(isHandset$ | async)" (click)="drawer.close()">
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="peopleSearch" class="default"
+          style="text-decoration: none; padding-left: 8px;margin-top: -8px; font-size: 15px; font-weight: 500;">People
+          Search</a>
+      </mat-list>
+      <mat-list id="peopleSearchDiv" *ngIf="!(isHandset$ | async)">
+        <a mat-list-item [routerLinkActive]="['is-active']" routerLink="peopleSearch" class="default"
+          style="text-decoration: none; padding-left: 8px;margin-top: -8px; font-size: 15px; font-weight: 500;">People
+          Search</a>
+      </mat-list> -->
+
+    </mat-expansion-panel>
+    <!-- </mat-accordion> -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
+      *ngIf="isHandset$ | async">
+      <img src="./assets/hamburger.png
+      " alt="Smiley face" height="21" width="21">
+    </button>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+<ng-template #elseBlock>
+  <router-outlet></router-outlet>
+</ng-template>
+
+
+<!-- <mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item href="#">General</a>
+      <a mat-list-item href="#">Use Cases</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="sidenav-content"> -->
+<!-- <mat-toolbar>
+       <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon"></mat-icon>
+      </button>
+     <span>help-tab</span>
+    </mat-toolbar> -->
+<!-- Add Content Here -->
+<!-- </mat-sidenav-content>
+</mat-sidenav-container> -->
